@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anlık -Döviz</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #40566F;
+             overflow-x: hidden;
+        }
+        .container{
+            position: absolute;
+            top: 35%;
+            transition: all  0.8s  infinite  ;
+            
+           
+            display: flex;
+            justify-content: space-between;
+            background-color: white;
+             align-items: center;
+           
+            
+        }
+        h1{
+            color: white;
+            text-align: center;
+            position: relative;
+            margin-top: 100px;
+        }
+        .name{
+            padding: 10px;
+            width: 200px;
+            
+        }
+
+       
+    </style>
+</head>
+<body> <h1>GÜNCEL - DÖVİZ KURU</h1>
+      <div class="container">
+       
+
+       
+      </div>
+<script>
+   const url ='http://hasanadiguzel.com.tr/api/kurgetir';
+
+   fetch('http://hasanadiguzel.com.tr/api/kurgetir')
+    .then(response => response.json())
+    .then(data => getRat(data.TCMB_AnlikKurBilgileri));
+
+    const getRat = (n) => {
+        console.log(n)
+        // let usd = document.querySelector(".usd-cont");
+        // usd.innerText =  n[0].CurrencyName +": "+n[0].ForexSelling +" TL"   ;
+
+        // let euro = document.querySelector(".euro-cont");
+        // euro.innerText =  n[0].CurrencyName +": "+n[0].ForexSelling +" TL"   ;
+        const ss = document.querySelector(".container")
+        for ( let i = 0; i<n.length ; i++){
+            let el = document.createElement("div");
+            el.classList.add("name");
+            el.innerText = n[i].CurrencyName +": "+n[i].ForexSelling +" TL";
+            ss.appendChild(el);
+
+            
+        }
+        
+        
+
+    }
+    const aa = document.querySelector(".container");
+
+    let s = 0; // s değişkeninin tanımı ve sıfırlama işlemi
+
+function ss() {
+     if (s < 16) {
+         s++;
+       aa.style.left = "-" + 200 * s + "px";
+     } else {
+          s = 0;
+        aa.style.left = "-" + 200 * s + "px";
+     }
+
+    
+};
+
+let timerr = setInterval(ss,800);
+
+
+</script>
+
+</body>
+</html>
